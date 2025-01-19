@@ -27,6 +27,12 @@ const ButtonAddToCart = styled.button`
   background-color: #fff;
   border: 1px solid var(--rose-400);
   cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    color: var(--red);
+    border: 1px solid var(--red);
+  }
 `;
 
 const ButtonAddMoreToCart = styled(ButtonAddToCart)`
@@ -38,6 +44,10 @@ const ButtonAddMoreToCart = styled(ButtonAddToCart)`
   cursor: pointer;
   color: #fff;
   font-weight: 600;
+
+  &:hover {
+    color: white;
+  }
 `;
 
 const DessertImage = styled.img`
@@ -63,13 +73,26 @@ const DessertPrice = styled.p`
   font-weight: 500;
 `;
 
-const ImageChangeQuantity = styled.img`
-  cursor: pointer;
+const ImageChangeQuantityContainer = styled.div`
   border: 1px solid #fff;
   border-radius: 100vw;
-  height: 1.2rem;
-  aspect-ratio: 1/1;
+  height: 1.25rem;
+  width: 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
   padding: 0.2rem;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: #fff;
+  }
+
+  &:hover img {
+    filter: brightness(0) saturate(100%) invert(34%) sepia(81%) saturate(7483%)
+      hue-rotate(18deg) brightness(94%) contrast(88%);
+  }
 `;
 
 function ListItem({ dessert }) {
@@ -112,17 +135,17 @@ function ListItem({ dessert }) {
           </ButtonAddToCart>
         ) : (
           <ButtonAddMoreToCart>
-            <ImageChangeQuantity
+            <ImageChangeQuantityContainer
               onClick={() => handleDecrementQuantity(dessertId)}
-              src="./images/icon-decrement-quantity.svg"
-              alt="cart icon"
-            />
+            >
+              <img src="./images/icon-decrement-quantity.svg" alt="cart icon" />
+            </ImageChangeQuantityContainer>
             <span>{dessertCount}</span>
-            <ImageChangeQuantity
+            <ImageChangeQuantityContainer
               onClick={() => handleIncrementQuantity(dessertId)}
-              src="./images/icon-increment-quantity.svg"
-              alt="cart icon"
-            />
+            >
+              <img src="./images/icon-increment-quantity.svg" alt="cart icon" />
+            </ImageChangeQuantityContainer>
           </ButtonAddMoreToCart>
         )}
       </ImageWithButtonContainer>

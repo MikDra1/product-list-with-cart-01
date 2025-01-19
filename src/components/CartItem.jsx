@@ -32,8 +32,13 @@ const DessertTitle = styled.h4`
 const ImageRemoveItem = styled.img`
   border: 1px solid var(--rose-400);
   border-radius: 100vw;
-  padding: 0.2rem;
+  padding: 0.25rem;
   cursor: pointer;
+  transition: all .3s;
+
+  &:hover {
+    filter: brightness(0)
+  }
 `;
 
 const Flex = styled.div`

@@ -68,6 +68,11 @@ const ConfirmOrderButton = styled.button`
   border: none;
   cursor: pointer;
   width: 100%;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: rgb(149, 44, 12);
+  }
 `;
 
 function ConfirmOrderPopup() {

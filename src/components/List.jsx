@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ListItem from "./ListItem";
 import styled from "styled-components";
+import Spinner from "./Spinner";
 
 const ListContainer = styled.div`
   display: grid;
@@ -18,14 +19,29 @@ const ListContainer = styled.div`
 
 function List() {
   const [desserts, setDesserts] = useState([]);
-  useEffect(function () {
-    fetch("./data.json")
-      .then((response) => response.json())
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetch("/data.json") // Use the correct path
+      .then((response) => {
+        if (!response.ok) throw new Error("Failed to fetch");
+        return response.json();
+      })
       .then((json) => {
-        console.log(json);
         setDesserts(json);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <ListContainer>
